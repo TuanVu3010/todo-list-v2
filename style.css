@@ -1,0 +1,206 @@
+/* khai báo các biến màu dùng chung, sửa một chỗ là đổi cả giao diện */
+:root {
+  /* màu nền của trang */
+  --nen: #eef1f6;
+  /* màu nền của khung ứng dụng */
+  --khung: #ffffff;
+  /* màu chữ chính */
+  --chu: #1f2937;
+  /* màu chữ nhạt dùng cho việc đã hoàn thành */
+  --chuNhat: #9ca3af;
+  /* màu nhấn mạnh cho nút Thêm, checkbox, viền focus */
+  --nhan: #2f4bff;
+  /* màu nguy hiểm dùng cho nút Xóa */
+  --xoa: #d93a3a;
+  /* màu đường viền */
+  --vien: #e2e6ee;
+}
+
+/* quy định chung: tính kích thước gồm cả padding và border cho mọi phần tử */
+* {
+  box-sizing: border-box;
+}
+
+/* định dạng toàn trang */
+body {
+  /* bỏ margin mặc định của trình duyệt */
+  margin: 0;
+  /* chiều cao tối thiểu bằng màn hình để căn giữa theo chiều dọc */
+  min-height: 100vh;
+  /* dùng flex để căn giữa khung ứng dụng */
+  display: flex;
+  /* căn khung giữa theo chiều ngang, cách mép trên 48px */
+  justify-content: center;
+  padding: 48px 16px;
+  /* áp màu nền và màu chữ */
+  background: var(--nen);
+  color: var(--chu);
+  /* phông chữ hệ thống, có chữ dự phòng */
+  font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+}
+
+/* khung chính của ứng dụng */
+.ungDung {
+  /* chiếm toàn chiều rộng nhưng không vượt quá 520px */
+  width: 100%;
+  max-width: 520px;
+  /* nền trắng, bo góc, đổ bóng nhẹ */
+  background: var(--khung);
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 8px 30px rgba(31, 41, 55, 0.08);
+  /* chiều cao theo nội dung, không bị kéo giãn */
+  align-self: flex-start;
+}
+
+/* tiêu đề ứng dụng */
+.tieuDe {
+  margin: 0 0 20px;
+  font-size: 1.6rem;
+}
+
+/* form thêm việc: ô nhập + nút Thêm nằm trên cùng một hàng */
+.formThem {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+/* ô nhập nội dung (dùng chung cho ô thêm và ô sửa) */
+.oNhap {
+  /* co giãn chiếm hết chỗ trống của hàng */
+  flex: 1;
+  /* tránh bị tràn khung khi màn hình nhỏ */
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--vien);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+/* hiệu ứng khi ô nhập được chọn (focus) */
+.oNhap:focus {
+  outline: 2px solid var(--nhan);
+  border-color: transparent;
+}
+
+/* kiểu chung cho các nút */
+.nut {
+  padding: 8px 14px;
+  border: 1px solid var(--vien);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--chu);
+  font-size: 0.95rem;
+  cursor: pointer;
+  /* chuyển màu mượt khi hover */
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+/* hiệu ứng hover cho nút thường */
+.nut:hover {
+  background: #f3f5fa;
+}
+
+/* viền focus rõ ràng khi thao tác bằng bàn phím (Tab) */
+.nut:focus-visible,
+.checkbox:focus-visible {
+  outline: 2px solid var(--nhan);
+  outline-offset: 2px;
+}
+
+/* nút Thêm: nền xanh, chữ trắng */
+.nutThem {
+  background: var(--nhan);
+  border-color: var(--nhan);
+  color: #fff;
+}
+
+/* hover của nút Thêm: đậm hơn một chút */
+.nutThem:hover {
+  background: #1f38d6;
+}
+
+/* nút Xóa: chữ đỏ, hover thì tô nền đỏ */
+.nutXoa {
+  color: var(--xoa);
+  border-color: #f1c4c4;
+}
+
+.nutXoa:hover {
+  background: var(--xoa);
+  color: #fff;
+}
+
+/* danh sách công việc: bỏ chấm tròn và khoảng cách mặc định của ul */
+.danhSach {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* mỗi dòng công việc: checkbox - nội dung - các nút */
+.viec {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--vien);
+}
+
+/* dòng cuối không cần đường gạch dưới */
+.viec:last-child {
+  border-bottom: none;
+}
+
+/* checkbox: phóng to lên cho dễ bấm trên điện thoại */
+.checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--nhan);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* nội dung công việc */
+.noiDung {
+  flex: 1;
+  /* cho phép xuống dòng nếu nội dung quá dài */
+  word-break: break-word;
+}
+
+/* việc đã hoàn thành: gạch ngang + chữ nhạt màu */
+.viec.daXong .noiDung {
+  text-decoration: line-through;
+  color: var(--chuNhat);
+}
+
+/* nhóm các nút Sửa/Xóa nằm sát nhau */
+.hanhDong {
+  display: flex;
+  gap: 6px;
+}
+
+/* thông báo danh sách rỗng */
+.thongBaoRong {
+  margin: 8px 0 0;
+  padding: 20px 0;
+  text-align: center;
+  color: var(--chuNhat);
+}
+
+/* thuộc tính hidden phải thắng display của thẻ p */
+.thongBaoRong[hidden] {
+  display: none;
+}
+
+/* màn hình nhỏ (điện thoại): thu hẹp khung và cho nút gọn hơn */
+@media (max-width: 480px) {
+  .ungDung {
+    padding: 20px 16px;
+  }
+
+  .nut {
+    padding: 8px 10px;
+  }
+}

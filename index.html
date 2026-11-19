@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- khai báo đây là tài liệu HTML5 -->
+<html lang="vi">
+  <!-- thẻ html bao bọc toàn bộ trang, lang="vi" để trình duyệt biết nội dung là tiếng Việt -->
+  <head>
+    <!-- phần head chứa thông tin cấu hình, không hiển thị trên giao diện -->
+    <meta charset="UTF-8" />
+    <!-- dùng bảng mã UTF-8 để hiển thị đúng chữ tiếng Việt -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- giúp trang hiển thị vừa màn hình điện thoại -->
+    <title>Todo List v0.2</title>
+    <!-- tiêu đề hiển thị trên tab trình duyệt -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- nhúng file style.css để làm đẹp giao diện -->
+  </head>
+  <body>
+    <!-- phần body chứa toàn bộ nội dung người dùng nhìn thấy -->
+    <main class="ungDung">
+      <!-- thẻ main là khung chính của ứng dụng -->
+      <h1 class="tieuDe">Danh sách công việc</h1>
+      <!-- tiêu đề của ứng dụng -->
+
+      <form id="formThem" class="formThem">
+        <!-- form thêm việc: nhấn Enter hoặc bấm nút Thêm đều gửi được -->
+        <input
+          type="text"
+          id="oNhap"
+          class="oNhap"
+          placeholder="Nhập công việc mới..."
+          autocomplete="off"
+        />
+        <!-- ô nhập nội dung công việc, JS sẽ lấy giá trị qua id="oNhap" -->
+        <button type="submit" class="nut nutThem">Thêm</button>
+        <!-- nút Thêm, type="submit" để kích hoạt sự kiện submit của form -->
+      </form>
+
+      <ul id="danhSach" class="danhSach"></ul>
+      <!-- danh sách rỗng, JS sẽ đổ các công việc vào đây bằng hàm hienThi() -->
+
+      <p id="thongBaoRong" class="thongBaoRong" hidden>
+        Chưa có công việc nào. Hãy thêm việc đầu tiên ở trên.
+      </p>
+      <!-- thông báo khi danh sách rỗng, mặc định ẩn bằng thuộc tính hidden -->
+    </main>
+
+    <script src="script.js"></script>
+    <!-- nhúng file script.js ở cuối body để HTML load xong rồi JS mới chạy -->
+  </body>
+</html>
